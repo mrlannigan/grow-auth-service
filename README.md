@@ -26,15 +26,14 @@ Validates token with Google's token validation service and if it is valid, we th
 * error = 'Unauthorized'
 * message - string
 
-#### GET /v1/auth/token
+#### GET /v1/auth/token/<reqToken>
 
 Used by Chat service to verify an access_token's validity. Will also return user's information that was gathered during authentication.
 
-##### Query
+##### Path
 * access_token - string
 
 ##### 200 Response
-* access_token - string
 * email - string
 * email_verified - boolean
 * name - string

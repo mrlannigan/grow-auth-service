@@ -3,7 +3,7 @@ from json import dumps
 
 class User(object):
     """Authorized user object"""
-    def __init__(self, email=None, email_verified=None, name=None, picture=None, given_name=None, family_name=None, locale=None):
+    def __init__(self, email=None, email_verified=None, name=None, picture=None, given_name=None, family_name=None, locale=None, **kwargs):
         super(User, self).__init__()
         self.email=email
         self.email_verified=bool(email_verified)
@@ -13,8 +13,8 @@ class User(object):
         self.family_name=family_name
         self.locale=locale or 'en'
 
-    def __str__(self):
-        return dumps({
+    def toDict(self):
+        return dict({
             'email': self.email,
             'email_verified': self.email_verified,
             'name': self.name,
@@ -23,6 +23,9 @@ class User(object):
             'family_name': self.family_name,
             'locale': self.locale
         })
+
+    def __str__(self):
+        return dumps(self.toDict())
 
     def response(self):
         return Response(response=str(self), mimetype='application/json')
